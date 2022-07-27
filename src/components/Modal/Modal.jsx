@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import s from './Modal.module.css';
+import PropTypes from 'prop-types';
 
 export class Modal extends Component {
   componentDidMount() {
@@ -24,9 +25,14 @@ export class Modal extends Component {
     return (
       <div className={s.overlay} onClick={this.handleCloseByDrope}>
         <div className={s.modal}>
-          <img src={largeImg} alt={'Picrute'} width="640" />
+          <img src={largeImg} alt={'Picrute'} width="860" />
         </div>
       </div>
     );
   }
 }
+
+Modal.ptopTypes = {
+  close: PropTypes.func.isRequired,
+  largeImg: PropTypes.string.isRequired,
+};

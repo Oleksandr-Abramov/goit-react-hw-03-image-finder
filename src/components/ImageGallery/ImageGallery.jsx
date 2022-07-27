@@ -2,10 +2,11 @@ import { Button } from 'components/Button/Button';
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import { Component } from 'react';
 import s from './ImageGallery.module.css';
-import { service } from 'components/ServiceApi/service';
-import { mapper } from 'components/Utilits/mapper';
+import { service } from 'ServiceApi/service';
+import { mapper } from 'Utilits/mapper';
 import { Spinner } from 'components/Spinner/Spinner';
 import { Modal } from 'components/Modal/Modal';
+import PropTypes from 'prop-types';
 
 const STATUS = {
   Idle: 'idle',
@@ -93,7 +94,16 @@ export class ImageGallery extends Component {
         {image && (
           <Modal largeImg={image.largeImageURL} close={this.handleCloseModal} />
         )}
+        {posts && posts.hits.length === 0 && (
+          <p style={{ textAlign: 'center' }}>
+            Нічого на знайшли за вашим запитом :(
+          </p>
+        )}
       </>
     );
   }
 }
+
+ImageGallery.ptopTypes = {
+  query: PropTypes.string,
+};
